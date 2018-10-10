@@ -1,0 +1,16 @@
+baseURL = "https://kubehippie.github.io/database-operator/"
+languageCode = "en-us"
+title = "Database Operator"
+pygmentsUseClasses = true
+
+[blackfriday]
+  angledQuotes = true
+  fractions = false
+  plainIDAnchors = true
+  smartlists = true
+  extensions = ["hardLineBreak"]
+
+[params]
+  author = "Thomas Boerger"
+  description = "Database Operator for Kubernetes"
+  keywords = "kubernetes, operator, controller, database"

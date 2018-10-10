@@ -1,0 +1,16 @@
+FROM webhippie/alpine:latest AS build
+RUN apk add --no-cache ca-certificates mailcap
+
+FROM scratch
+
+LABEL maintainer="Thomas Boerger <thomas@webhippie.de>" \
+  org.label-schema.name="Database Operator" \
+  org.label-schema.vendor="Kubehippie" \
+  org.label-schema.schema-version="1.0"
+
+ENTRYPOINT ["/usr/bin/database-operator"]
+
+COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=build /etc/mime.types /etc/
+
+COPY dist/binaries/database-operator-*-linux-amd64 /usr/bin/database-operator

@@ -1,0 +1,51 @@
+---
+kind: Server
+apiVersion: operator.webhippie.de/v1alpha1
+metadata:
+  name: example-mysql
+  namespace: default
+spec:
+  type: mysql
+  username:
+    secretName: mysql-production
+    secretKey: username
+  password:
+    secretName: mysql-production
+    secretKey: password
+  host: mysql.default.svc.cluster.local:3306
+
+---
+kind: Database
+apiVersion: operator.webhippie.de/v1alpha1
+metadata:
+  name: example-mysql
+  namespace: default
+spec:
+  type: mysql
+  secretName: example-mysql-database
+
+---
+kind: Server
+apiVersion: operator.webhippie.de/v1alpha1
+metadata:
+  name: example-postgres
+  namespace: default
+spec:
+  type: postgres
+  username:
+    secretName: postgres-production
+    secretKey: username
+  password:
+    secretName: postgres-production
+    secretKey: password
+  host: postgres.default.svc.cluster.local:6543
+
+---
+kind: Database
+apiVersion: operator.webhippie.de/v1alpha1
+metadata:
+  name: example-postgres
+  namespace: default
+spec:
+  type: postgres
+  secretName: example-postgres-database
